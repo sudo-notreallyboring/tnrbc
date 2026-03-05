@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, DM_Serif_Display, Space_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${spaceGrotesk.variable} ${dmSerifDisplay.variable} ${spaceMono.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
