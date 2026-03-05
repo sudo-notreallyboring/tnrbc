@@ -27,6 +27,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://notreallyboring.com'),
   title: 'Not Really Boring — Transformation, Delivered.',
   description: 'Management consulting that delivers 20–35% efficiency gains in 90 days. Proven methods, senior teams, guaranteed ROI by week 8.',
   keywords: 'business transformation, management consulting, operational excellence, digital transformation, target operating model, execution consulting, ROI consulting, Barcelona consultancy',
