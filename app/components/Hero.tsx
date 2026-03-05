@@ -30,7 +30,7 @@ export default function Hero() {
         <section
             id="hero-section"
             ref={containerRef}
-            className="relative h-[100dvh] w-full flex items-end pl-8 md:pl-16 lg:pl-24 pb-16 md:pb-24 overflow-hidden"
+            className="relative h-[100dvh] w-full flex items-end px-6 md:pl-16 lg:pl-24 pb-16 md:pb-24 overflow-hidden"
         >
             <div className="absolute inset-0 z-0">
                 <Image
