@@ -48,12 +48,12 @@ export default function Hero() {
                 />
             </div>
 
-            <div ref={elementsRef} className="relative z-10 max-w-4xl text-left flex flex-col gap-4 mx-auto md:mx-0 items-center md:items-start text-center md:text-left">
+            <div ref={elementsRef} className="relative z-10 max-w-4xl flex flex-col gap-4 items-start text-left">
                 <h1 className="flex flex-col">
                     <span className="font-heading font-bold text-[clamp(1.5rem,3vw,2.5rem)] text-off-white uppercase tracking-[-0.04em] leading-[1.1]">
                         Execute the
                     </span>
-                    <span className="font-drama italic text-[clamp(4rem,8vw,9rem)] text-off-white tracking-[-0.02em] leading-[0.95]">
+                    <span className="font-drama italic text-[clamp(2.75rem,8vw,9rem)] text-off-white tracking-[-0.02em] leading-[0.95]">
                         Transformation.
                     </span>
                 </h1>
