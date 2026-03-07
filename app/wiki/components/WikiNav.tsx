@@ -71,7 +71,7 @@ export default function WikiNav() {
           <div className="hidden md:block">
             <Link
               href="/#contact"
-              className="text-sm font-heading font-medium px-4 py-1.5 rounded-lg bg-wiki-surface-2 text-wiki-text-secondary hover:text-wiki-text border border-wiki-border hover:border-wiki-border transition-colors"
+              className="text-sm font-heading font-medium px-4 py-1.5 rounded-lg bg-wiki-surface-2 text-wiki-text-secondary hover:text-wiki-text border border-wiki-border hover:border-wiki-border-hover transition-colors"
             >
               Book a Briefing
             </Link>
@@ -129,6 +129,15 @@ export default function WikiNav() {
                   </Link>
                 );
               })}
+              <div className="border-t border-wiki-border mt-4 pt-4">
+                <Link
+                  href="/#contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-heading font-medium bg-wiki-surface-2 text-wiki-text-secondary hover:text-wiki-text border border-wiki-border hover:border-wiki-border-hover transition-colors"
+                >
+                  Book a Briefing
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
