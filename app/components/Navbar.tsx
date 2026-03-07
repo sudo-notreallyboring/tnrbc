@@ -40,6 +40,7 @@ export default function Navbar() {
                         <Link href="#methods" className="hover:-translate-y-[1px] transition-transform">Methods</Link>
                         <Link href="#results" className="hover:-translate-y-[1px] transition-transform">Results</Link>
                         <Link href="#philosophy" className="hover:-translate-y-[1px] transition-transform">Philosophy</Link>
+                        <Link href="/wiki" className="hover:-translate-y-[1px] transition-transform">Wiki</Link>
                     </div>
 
                     <Link
@@ -80,6 +81,7 @@ export default function Navbar() {
                     <Link href="#methods" onClick={() => setMobileMenuOpen(false)}>Methods</Link>
                     <Link href="#results" onClick={() => setMobileMenuOpen(false)}>Results</Link>
                     <Link href="#philosophy" onClick={() => setMobileMenuOpen(false)}>Philosophy</Link>
+                    <Link href="/wiki" onClick={() => setMobileMenuOpen(false)}>Wiki</Link>
                 </div>
 
                 <Link
