@@ -4,7 +4,6 @@ import {
   ReactFlow,
   Background,
   Controls,
-  MiniMap,
   type Node,
   type Edge,
   Position,
@@ -14,6 +13,17 @@ import {
 import '@xyflow/react/dist/style.css';
 import { Zap, Activity, LayoutGrid, Link2 } from 'lucide-react';
 import Link from 'next/link';
+import { methods } from '../data';
+
+// Derived from tailwind config wiki theme tokens
+const theme = {
+  bg: '#0A0A0A',
+  surface: '#111113',
+  border: '#2A2A2E',
+  borderSubtle: '#1F1F23',
+  textSecondary: '#8B8B8E',
+  textTertiary: '#5C5C5F',
+};
 
 const methodMeta: Record<string, { icon: typeof Zap; color: string; bg: string; border: string }> = {
   bolt: { icon: Zap, color: '#F59E0B', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.3)' },
@@ -49,10 +59,10 @@ function MethodNode({ data }: { data: { id: string; name: string; fullName: stri
             <div className="font-heading font-bold text-sm" style={{ color: meta.color }}>
               {data.name}
             </div>
-            <div className="font-mono text-[10px] text-[#8B8B8E]">{data.duration}</div>
+            <div className="font-mono text-[10px]" style={{ color: theme.textSecondary }}>{data.duration}</div>
           </div>
         </div>
-        <div className="text-xs text-[#8B8B8E] font-heading leading-relaxed">{data.fullName}</div>
+        <div className="text-xs font-heading leading-relaxed" style={{ color: theme.textSecondary }}>{data.fullName}</div>
       </div>
     </Link>
   );
@@ -60,117 +70,41 @@ function MethodNode({ data }: { data: { id: string; name: string; fullName: stri
 
 const nodeTypes = { method: MethodNode };
 
+const edgeDefaults = {
+  labelStyle: { fill: theme.textTertiary, fontSize: 10, fontFamily: 'var(--font-mono)' },
+  labelBgStyle: { fill: theme.bg, fillOpacity: 0.9 },
+  labelBgPadding: [6, 4] as [number, number],
+  labelBgBorderRadius: 4,
+  style: { stroke: theme.border, strokeWidth: 1.5 },
+  markerEnd: { type: MarkerType.ArrowClosed, color: theme.border, width: 16, height: 16 },
+  type: 'smoothstep' as const,
+};
+
+const dashedEdgeDefaults = {
+  ...edgeDefaults,
+  style: { ...edgeDefaults.style, strokeDasharray: '6 3' },
+};
+
 export default function MethodologyFlow() {
   const nodes: Node[] = useMemo(
-    () => [
-      {
-        id: 'bolt',
+    () =>
+      methods.map((m, i) => ({
+        id: m.id,
         type: 'method',
-        position: { x: 0, y: 0 },
-        data: { id: 'bolt', name: 'BOLT', fullName: 'Business Optimization & Lightning Transformation', duration: '90 Days' },
-      },
-      {
-        id: 'surge',
-        type: 'method',
-        position: { x: 350, y: 0 },
-        data: { id: 'surge', name: 'SURGE', fullName: 'Strategic Unified Rapid Growth Execution', duration: '60 Days' },
-      },
-      {
-        id: 'grid',
-        type: 'method',
-        position: { x: 0, y: 180 },
-        data: { id: 'grid', name: 'GRID', fullName: 'Governance, Rewire, Instrument, Deploy', duration: '90 Days' },
-      },
-      {
-        id: 'fuse',
-        type: 'method',
-        position: { x: 350, y: 180 },
-        data: { id: 'fuse', name: 'FUSE', fullName: 'Fast Unified System Enablement', duration: '10–180 Days' },
-      },
-    ],
+        position: { x: (i % 2) * 350, y: Math.floor(i / 2) * 180 },
+        data: { id: m.id, name: m.name, fullName: m.fullName, duration: m.duration },
+      })),
     []
   );
 
   const edges: Edge[] = useMemo(
     () => [
-      {
-        id: 'bolt-surge',
-        source: 'bolt',
-        target: 'surge',
-        label: 'Results feed scaling',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5 },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
-      {
-        id: 'bolt-grid',
-        source: 'bolt',
-        target: 'grid',
-        label: 'Wins inform TOM',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5 },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
-      {
-        id: 'grid-surge',
-        source: 'grid',
-        target: 'surge',
-        label: 'Design informs scale',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5 },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
-      {
-        id: 'grid-fuse',
-        source: 'grid',
-        target: 'fuse',
-        label: '10-block architecture',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5 },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
-      {
-        id: 'bolt-fuse',
-        source: 'bolt',
-        target: 'fuse',
-        label: 'Rapid diagnostics',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5, strokeDasharray: '6 3' },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
-      {
-        id: 'surge-fuse',
-        source: 'surge',
-        target: 'fuse',
-        label: 'Wave model powers PMI',
-        labelStyle: { fill: '#5C5C5F', fontSize: 10, fontFamily: 'var(--font-mono)' },
-        labelBgStyle: { fill: '#0A0A0A', fillOpacity: 0.9 },
-        labelBgPadding: [6, 4] as [number, number],
-        labelBgBorderRadius: 4,
-        style: { stroke: '#2A2A2E', strokeWidth: 1.5, strokeDasharray: '6 3' },
-        markerEnd: { type: MarkerType.ArrowClosed, color: '#2A2A2E', width: 16, height: 16 },
-        type: 'smoothstep',
-      },
+      { id: 'bolt-surge', source: 'bolt', target: 'surge', label: 'Results feed scaling', ...edgeDefaults },
+      { id: 'bolt-grid', source: 'bolt', target: 'grid', label: 'Wins inform TOM', ...edgeDefaults },
+      { id: 'grid-surge', source: 'grid', target: 'surge', label: 'Design informs scale', ...edgeDefaults },
+      { id: 'grid-fuse', source: 'grid', target: 'fuse', label: '10-block architecture', ...edgeDefaults },
+      { id: 'bolt-fuse', source: 'bolt', target: 'fuse', label: 'Rapid diagnostics', ...dashedEdgeDefaults },
+      { id: 'surge-fuse', source: 'surge', target: 'fuse', label: 'Wave model powers PMI', ...dashedEdgeDefaults },
     ],
     []
   );
@@ -180,7 +114,11 @@ export default function MethodologyFlow() {
   }, []);
 
   return (
-    <div className="w-full h-[420px] rounded-xl border border-wiki-border bg-wiki-surface overflow-hidden">
+    <div
+      className="w-full h-[420px] rounded-xl border border-wiki-border bg-wiki-surface overflow-hidden"
+      aria-label="Methodology relationship diagram showing how BOLT, SURGE, GRID, and FUSE connect to each other"
+      role="img"
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -192,15 +130,10 @@ export default function MethodologyFlow() {
         proOptions={{ hideAttribution: true }}
         className="wiki-flow"
       >
-        <Background color="#1F1F23" gap={24} size={1} />
+        <Background color={theme.borderSubtle} gap={24} size={1} />
         <Controls
           showInteractive={false}
           className="!bg-wiki-surface !border-wiki-border !rounded-lg [&>button]:!bg-wiki-surface [&>button]:!border-wiki-border [&>button]:!text-wiki-text-secondary [&>button:hover]:!bg-wiki-surface-2"
-        />
-        <MiniMap
-          nodeColor={(n) => methodMeta[n.id]?.color ?? '#2A2A2E'}
-          maskColor="rgba(10,10,10,0.8)"
-          className="!bg-wiki-surface !border-wiki-border !rounded-lg"
         />
       </ReactFlow>
     </div>

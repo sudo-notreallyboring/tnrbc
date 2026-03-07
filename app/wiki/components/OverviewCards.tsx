@@ -20,16 +20,7 @@ export default function OverviewCards() {
           >
             <Link
               href={`/wiki/${method.id}`}
-              className="group block h-full rounded-xl border border-wiki-border bg-wiki-surface p-6 transition-all duration-300 hover:border-wiki-border hover:bg-wiki-surface-2"
-              style={{
-                boxShadow: 'none',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px ${method.accentColor}10`;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = 'none';
-              }}
+              className="group block h-full rounded-xl border border-wiki-border-subtle bg-wiki-surface p-6 transition-all duration-300 hover:border-wiki-border-hover hover:bg-wiki-surface-2"
             >
               <div className="flex items-start justify-between mb-4">
                 <div

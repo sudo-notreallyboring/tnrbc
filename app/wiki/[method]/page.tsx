@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { methods } from '../data';
 import { methodMeta } from '../metadata';
 import MethodPageClient from './MethodPageClient';
 
@@ -7,7 +8,7 @@ type Props = {
   params: Promise<{ method: string }>;
 };
 
-const validIds = ['bolt', 'surge', 'grid', 'fuse'];
+const validIds = methods.map((m) => m.id);
 
 export async function generateStaticParams() {
   return validIds.map((method) => ({ method }));

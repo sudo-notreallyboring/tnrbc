@@ -49,7 +49,7 @@ export default function WikiNav() {
                   className={cn(
                     'relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-heading transition-colors',
                     isActive
-                      ? 'text-wiki-text bg-wiki-surface-2'
+                      ? 'text-wiki-text'
                       : 'text-wiki-text-secondary hover:text-wiki-text hover:bg-wiki-surface'
                   )}
                 >

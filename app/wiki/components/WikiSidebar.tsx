@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BookOpen, Zap, Activity, LayoutGrid, Link2, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { philosophyPrinciples } from '../data';
 
 const sidebarItems = [
   {
@@ -16,7 +17,7 @@ const sidebarItems = [
     items: [
       { href: '/wiki/bolt', label: 'BOLT', subtitle: 'Business Optimization & Lightning Transformation', icon: Zap, color: 'text-wiki-accent-amber', dotColor: 'bg-wiki-accent-amber' },
       { href: '/wiki/surge', label: 'SURGE', subtitle: 'Strategic Unified Rapid Growth Execution', icon: Activity, color: 'text-wiki-accent-green', dotColor: 'bg-wiki-accent-green' },
-      { href: '/wiki/grid', label: 'GRID', subtitle: 'Governance, Rewire, Instrument, Deploy', icon: LayoutGrid, color: 'text-wiki-accent-purple', dotColor: 'bg-wiki-accent-purple' },
+      { href: '/wiki/grid', label: 'GRID', subtitle: 'Govern, Reveal, Invent, Deploy', icon: LayoutGrid, color: 'text-wiki-accent-purple', dotColor: 'bg-wiki-accent-purple' },
       { href: '/wiki/fuse', label: 'FUSE', subtitle: 'Fast Unified System Enablement', icon: Link2, color: 'text-wiki-accent-blue', dotColor: 'bg-wiki-accent-blue' },
     ],
   },
@@ -69,22 +70,20 @@ export default function WikiSidebar() {
           </div>
         ))}
 
-        {/* Philosophy section */}
+        {/* Philosophy section — links to overview page */}
         <div className="border-t border-wiki-border pt-6 mt-6">
           <div className="text-[11px] font-heading font-bold uppercase tracking-widest text-wiki-text-tertiary px-3 mb-2">
             Philosophy
           </div>
           <div className="px-3 flex flex-col gap-2">
-            {[
-              'Demo or Didn\'t Happen',
-              'Small Bets, Short Loops',
-              'Value Before Vanity',
-              'Teach While Doing',
-              'Friction Dies Publicly',
-            ].map((principle) => (
-              <div key={principle} className="text-xs text-wiki-text-tertiary font-mono">
-                {principle}
-              </div>
+            {philosophyPrinciples.map((principle) => (
+              <Link
+                key={principle.name}
+                href="/wiki#philosophy"
+                className="text-xs text-wiki-text-tertiary font-mono hover:text-wiki-text-secondary transition-colors"
+              >
+                {principle.name}
+              </Link>
             ))}
           </div>
         </div>
