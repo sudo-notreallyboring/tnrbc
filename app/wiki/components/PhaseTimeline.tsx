@@ -28,11 +28,11 @@ export default function PhaseTimeline({
             <div key={i} className="relative">
               {/* Timeline dot */}
               <div
-                className="absolute left-[12px] top-[18px] w-[15px] h-[15px] rounded-full border-2 z-10 transition-colors duration-200"
-                style={{
-                  borderColor: isExpanded ? accentColor : '#2A2A2E',
-                  backgroundColor: isExpanded ? accentColor : '#111113',
-                }}
+                className={cn(
+                  'absolute left-[12px] top-[18px] w-[15px] h-[15px] rounded-full border-2 z-10 transition-colors duration-200',
+                  !isExpanded && 'border-wiki-border bg-wiki-surface'
+                )}
+                style={isExpanded ? { borderColor: accentColor, backgroundColor: accentColor } : undefined}
               />
 
               {/* Phase card */}

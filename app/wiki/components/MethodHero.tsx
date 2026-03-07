@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'motion/react';
-import { Clock, ArrowRight } from 'lucide-react';
+import { Clock, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import type { Method } from '../data';
 import { methodIcons } from '../icons';
 
@@ -22,13 +23,13 @@ export default function MethodHero({ method }: { method: Method }) {
         className="relative z-10"
       >
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm font-heading text-wiki-text-tertiary mb-8">
-          <span>Wiki</span>
-          <ArrowRight size={12} />
-          <span>Methods</span>
-          <ArrowRight size={12} />
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm font-heading text-wiki-text-tertiary mb-8">
+          <Link href="/wiki" className="hover:text-wiki-text-secondary transition-colors">Wiki</Link>
+          <ChevronRight size={12} />
+          <Link href="/wiki" className="hover:text-wiki-text-secondary transition-colors">Methods</Link>
+          <ChevronRight size={12} />
           <span className={method.accentColorClass}>{method.name}</span>
-        </div>
+        </nav>
 
         {/* Icon + badge */}
         <div className="flex items-center gap-4 mb-6">
