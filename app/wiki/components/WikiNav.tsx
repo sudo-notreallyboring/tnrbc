@@ -70,7 +70,7 @@ export default function WikiNav() {
           {/* Right: CTA */}
           <div className="hidden md:block">
             <a
-              href="https://booking.akiflow.com/not-really-boring-70ed"
+              href="https://booking.akiflow.com/darren-s-0220"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-heading font-medium px-4 py-1.5 rounded-lg bg-wiki-surface-2 text-wiki-text-secondary hover:text-wiki-text border border-wiki-border hover:border-wiki-border-hover transition-colors"
@@ -133,7 +133,7 @@ export default function WikiNav() {
               })}
               <div className="border-t border-wiki-border mt-4 pt-4">
                 <a
-                  href="https://booking.akiflow.com/not-really-boring-70ed"
+                  href="https://booking.akiflow.com/darren-s-0220"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}

@@ -44,7 +44,7 @@ export default function Navbar() {
                     </div>
 
                     <a
-                        href="https://booking.akiflow.com/not-really-boring-70ed"
+                        href="https://booking.akiflow.com/darren-s-0220"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative overflow-hidden bg-signal-red text-off-white rounded-full px-6 py-2 text-sm font-heading font-medium transition-transform duration-300 hover:scale-[1.03] outline-none focus-visible:ring-2 focus-visible:ring-signal-red focus-visible:ring-offset-2"
@@ -87,7 +87,7 @@ export default function Navbar() {
                 </div>
 
                 <a
-                    href="https://booking.akiflow.com/not-really-boring-70ed"
+                    href="https://booking.akiflow.com/darren-s-0220"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMobileMenuOpen(false)}

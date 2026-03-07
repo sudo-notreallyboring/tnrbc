@@ -50,7 +50,7 @@ export default function FinalCTA() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full relative z-10">
-                    <a href="https://booking.akiflow.com/not-really-boring-70ed" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-black text-off-white rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
+                    <a href="https://booking.akiflow.com/darren-s-0220" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-black text-off-white rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
                         <span className="relative z-10 flex items-center gap-3">
                             Schedule Executive Briefing
                             <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>

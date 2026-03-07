@@ -172,7 +172,7 @@ export default function WikiOverviewClient() {
                 Every engagement starts with a 30-minute executive briefing. No slides, no pitch — just a conversation about your transformation goals.
               </p>
               <a
-                href="https://booking.akiflow.com/not-really-boring-70ed"
+                href="https://booking.akiflow.com/darren-s-0220"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-signal-red text-off-white font-heading font-medium text-sm hover:bg-signal-red/90 transition-colors"
