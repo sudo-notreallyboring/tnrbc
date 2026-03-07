@@ -371,8 +371,8 @@ export const methods: Method[] = [
   {
     id: 'grid',
     name: 'GRID',
-    fullName: 'Governance, Rewire, Instrument, Deploy',
-    acronymBreakdown: ['Governance', 'Rewire', 'Instrument', 'Deploy'],
+    fullName: 'Govern, Reveal, Invent, Deploy',
+    acronymBreakdown: ['Govern', 'Reveal', 'Invent', 'Deploy'],
     tagline: 'Architect a complete Target Operating Model, then deploy it.',
     duration: '90 Days',
 

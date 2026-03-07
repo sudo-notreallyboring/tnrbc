@@ -39,6 +39,8 @@ export default function PhaseTimeline({
               <div className="ml-12">
                 <button
                   onClick={() => setExpandedIndex(isExpanded ? null : i)}
+                  aria-expanded={isExpanded}
+                  aria-controls={`phase-content-${i}`}
                   className={cn(
                     'w-full text-left px-5 py-4 rounded-xl border transition-all duration-200',
                     isExpanded
@@ -74,6 +76,9 @@ export default function PhaseTimeline({
                 <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.div
+                      id={`phase-content-${i}`}
+                      role="region"
+                      aria-label={`${phase.name} details`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

@@ -4,6 +4,7 @@ import { CheckCircle2, AlertCircle, ArrowRight, Compass, Users, Lightbulb } from
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { Method } from '../data';
+import { methods } from '../data';
 import PhaseTimeline from './PhaseTimeline';
 
 function Section({
@@ -130,13 +131,10 @@ export default function MethodContent({ method }: { method: Method }) {
       <Section title="Connected Methods" icon={ArrowRight} delay={0.3}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {method.connectionTo.map((conn) => {
-            const methodColors: Record<string, { color: string; name: string }> = {
-              bolt: { color: '#F59E0B', name: 'BOLT' },
-              surge: { color: '#22C55E', name: 'SURGE' },
-              grid: { color: '#A855F7', name: 'GRID' },
-              fuse: { color: '#4C8BF5', name: 'FUSE' },
-            };
-            const target = methodColors[conn.method];
+            const targetMethod = methods.find((m) => m.id === conn.method);
+            const target = targetMethod
+              ? { color: targetMethod.accentColor, name: targetMethod.name }
+              : { color: '#5C5C5F', name: conn.method.toUpperCase() };
             return (
               <Link
                 key={conn.method}

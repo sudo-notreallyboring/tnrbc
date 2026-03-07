@@ -26,6 +26,7 @@ const config: Config = {
                 'wiki-accent-amber': '#F59E0B',
                 'wiki-accent-green': '#22C55E',
                 'wiki-accent-purple': '#A855F7',
+                'wiki-border-hover': '#3A3A3E',
             },
             fontFamily: {
                 heading: ['var(--font-heading)', 'sans-serif'],
