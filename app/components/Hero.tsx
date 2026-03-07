@@ -62,8 +62,10 @@ export default function Hero() {
                     Strategy without velocity is expensive theatre. We deliver 90-day transformations with ROI by week 8. No exceptions.
                 </p>
 
-                <Link
-                    href="#contact"
+                <a
+                    href="https://booking.akiflow.com/not-really-boring-70ed"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-4 group relative overflow-hidden bg-signal-red text-off-white rounded-full px-8 py-4 font-heading font-medium text-lg transition-transform duration-300 hover:scale-[1.03] outline-none focus-visible:ring-2 focus-visible:ring-signal-red focus-visible:ring-offset-2 w-fit"
                     style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
                 >
@@ -73,7 +75,7 @@ export default function Hero() {
                     </span>
                     <span className="absolute inset-0 bg-off-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></span>
                     <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 delay-75 ease-out z-0"></span>
-                </Link>
+                </a>
             </div>
         </section>
     );
