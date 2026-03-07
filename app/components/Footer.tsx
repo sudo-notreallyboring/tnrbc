@@ -44,7 +44,7 @@ export default function Footer() {
                     <div className="flex flex-col">
                         <h3 className="font-mono text-[0.8125rem] text-charcoal uppercase tracking-widest mb-8">Connect</h3>
                         <ul className="flex flex-col gap-4 font-heading text-[1.125rem] text-off-white/80">
-                            <li><a href="mailto:transform@notreallyboring.com" className="hover:text-signal-red transition-colors">transform@notreallyboring.com</a></li>
+                            <li><a href="mailto:sudo@notreallyboring.com" className="hover:text-signal-red transition-colors">sudo@notreallyboring.com</a></li>
                             <li className="text-mid-grey">Barcelona, Spain</li>
                         </ul>
                     </div>
