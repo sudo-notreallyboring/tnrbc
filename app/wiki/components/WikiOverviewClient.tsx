@@ -171,13 +171,15 @@ export default function WikiOverviewClient() {
               <p className="text-sm text-wiki-text-tertiary mb-6 max-w-md mx-auto">
                 Every engagement starts with a 30-minute executive briefing. No slides, no pitch — just a conversation about your transformation goals.
               </p>
-              <Link
-                href="/#contact"
+              <a
+                href="https://booking.akiflow.com/not-really-boring-70ed"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-signal-red text-off-white font-heading font-medium text-sm hover:bg-signal-red/90 transition-colors"
               >
                 Schedule Executive Briefing
                 <ArrowRight size={14} />
-              </Link>
+              </a>
             </motion.div>
           </div>
         </main>

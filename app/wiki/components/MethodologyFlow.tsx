@@ -13,9 +13,7 @@ import {
 import '@xyflow/react/dist/style.css';
 import { Zap, Activity, LayoutGrid, Link2 } from 'lucide-react';
 import Link from 'next/link';
-import { methods } from '../data';
 
-// Derived from tailwind config wiki theme tokens
 const theme = {
   bg: '#0A0A0A',
   surface: '#111113',
@@ -39,30 +37,38 @@ function MethodNode({ data }: { data: { id: string; name: string; fullName: stri
   return (
     <Link href={`/wiki/${data.id}`} className="block">
       <div
-        className="group relative px-6 py-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+        className="group relative px-6 py-4 rounded-xl border transition-all duration-300 hover:scale-[1.02] cursor-pointer"
         style={{
           background: meta.bg,
           borderColor: meta.border,
-          minWidth: 220,
+          width: 280,
         }}
       >
-        <Handle type="target" position={Position.Top} className="!bg-transparent !border-none !w-0 !h-0" />
-        <Handle type="source" position={Position.Bottom} className="!bg-transparent !border-none !w-0 !h-0" />
-        <Handle type="target" position={Position.Left} className="!bg-transparent !border-none !w-0 !h-0" />
-        <Handle type="source" position={Position.Right} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="top" type="target" position={Position.Top} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="bottom" type="source" position={Position.Bottom} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="left-out" type="source" position={Position.Left} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="left-in" type="target" position={Position.Left} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="right-out" type="source" position={Position.Right} className="!bg-transparent !border-none !w-0 !h-0" />
+        <Handle id="right-in" type="target" position={Position.Right} className="!bg-transparent !border-none !w-0 !h-0" />
 
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg" style={{ backgroundColor: `${meta.color}15` }}>
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg shrink-0" style={{ backgroundColor: `${meta.color}15` }}>
             <Icon size={18} style={{ color: meta.color }} />
           </div>
-          <div>
-            <div className="font-heading font-bold text-sm" style={{ color: meta.color }}>
-              {data.name}
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="font-heading font-bold text-sm" style={{ color: meta.color }}>
+                {data.name}
+              </span>
+              <span className="font-mono text-[10px]" style={{ color: theme.textSecondary }}>
+                {data.duration}
+              </span>
             </div>
-            <div className="font-mono text-[10px]" style={{ color: theme.textSecondary }}>{data.duration}</div>
+            <div className="text-xs font-heading leading-snug truncate" style={{ color: theme.textSecondary }}>
+              {data.fullName}
+            </div>
           </div>
         </div>
-        <div className="text-xs font-heading leading-relaxed" style={{ color: theme.textSecondary }}>{data.fullName}</div>
       </div>
     </Link>
   );
@@ -70,41 +76,49 @@ function MethodNode({ data }: { data: { id: string; name: string; fullName: stri
 
 const nodeTypes = { method: MethodNode };
 
-const edgeDefaults = {
+const edgeBase = {
   labelStyle: { fill: theme.textTertiary, fontSize: 10, fontFamily: 'var(--font-mono)' },
-  labelBgStyle: { fill: theme.bg, fillOpacity: 0.9 },
-  labelBgPadding: [6, 4] as [number, number],
+  labelBgStyle: { fill: theme.bg, fillOpacity: 0.95 },
+  labelBgPadding: [8, 4] as [number, number],
   labelBgBorderRadius: 4,
   style: { stroke: theme.border, strokeWidth: 1.5 },
-  markerEnd: { type: MarkerType.ArrowClosed, color: theme.border, width: 16, height: 16 },
+  markerEnd: { type: MarkerType.ArrowClosed, color: theme.border, width: 14, height: 14 },
   type: 'smoothstep' as const,
 };
 
-const dashedEdgeDefaults = {
-  ...edgeDefaults,
-  style: { ...edgeDefaults.style, strokeDasharray: '6 3' },
+const dashedBase = {
+  ...edgeBase,
+  style: { ...edgeBase.style, strokeDasharray: '6 3' },
 };
+
+// Vertical order: BOLT → GRID → SURGE → FUSE (all arrows flow downward)
+const nodeX = 100;
+const nodeSpacing = 140;
 
 export default function MethodologyFlow() {
   const nodes: Node[] = useMemo(
-    () =>
-      methods.map((m, i) => ({
-        id: m.id,
-        type: 'method',
-        position: { x: (i % 2) * 350, y: Math.floor(i / 2) * 180 },
-        data: { id: m.id, name: m.name, fullName: m.fullName, duration: m.duration },
-      })),
+    () => [
+      { id: 'bolt', type: 'method', position: { x: nodeX, y: 0 }, data: { id: 'bolt', name: 'BOLT', fullName: 'Business Optimization & Lightning Transformation', duration: '90 Days' } },
+      { id: 'grid', type: 'method', position: { x: nodeX, y: nodeSpacing }, data: { id: 'grid', name: 'GRID', fullName: 'Govern, Reveal, Invent, Deploy', duration: '90 Days' } },
+      { id: 'surge', type: 'method', position: { x: nodeX, y: nodeSpacing * 2 }, data: { id: 'surge', name: 'SURGE', fullName: 'Strategic Unified Rapid Growth Execution', duration: '60 Days' } },
+      { id: 'fuse', type: 'method', position: { x: nodeX, y: nodeSpacing * 3 }, data: { id: 'fuse', name: 'FUSE', fullName: 'Fast Unified System Enablement', duration: '10–180 Days' } },
+    ],
     []
   );
 
   const edges: Edge[] = useMemo(
     () => [
-      { id: 'bolt-surge', source: 'bolt', target: 'surge', label: 'Results feed scaling', ...edgeDefaults },
-      { id: 'bolt-grid', source: 'bolt', target: 'grid', label: 'Wins inform TOM', ...edgeDefaults },
-      { id: 'grid-surge', source: 'grid', target: 'surge', label: 'Design informs scale', ...edgeDefaults },
-      { id: 'grid-fuse', source: 'grid', target: 'fuse', label: '10-block architecture', ...edgeDefaults },
-      { id: 'bolt-fuse', source: 'bolt', target: 'fuse', label: 'Rapid diagnostics', ...dashedEdgeDefaults },
-      { id: 'surge-fuse', source: 'surge', target: 'fuse', label: 'Wave model powers PMI', ...dashedEdgeDefaults },
+      // Adjacent (center — straight down)
+      { id: 'bolt-grid', source: 'bolt', sourceHandle: 'bottom', target: 'grid', targetHandle: 'top', label: 'Wins inform TOM', ...edgeBase },
+      { id: 'grid-surge', source: 'grid', sourceHandle: 'bottom', target: 'surge', targetHandle: 'top', label: 'Design informs scale', ...edgeBase },
+      { id: 'surge-fuse', source: 'surge', sourceHandle: 'bottom', target: 'fuse', targetHandle: 'top', label: 'Wave model powers PMI', ...dashedBase },
+
+      // Skip-1 connections (side routes)
+      { id: 'bolt-surge', source: 'bolt', sourceHandle: 'right-out', target: 'surge', targetHandle: 'right-in', label: 'Results feed scaling', ...edgeBase },
+      { id: 'grid-fuse', source: 'grid', sourceHandle: 'left-out', target: 'fuse', targetHandle: 'left-in', label: '10-block architecture', ...edgeBase },
+
+      // Skip-2 connection (far side)
+      { id: 'bolt-fuse', source: 'bolt', sourceHandle: 'left-out', target: 'fuse', targetHandle: 'left-in', label: 'Rapid diagnostics', ...dashedBase },
     ],
     []
   );
@@ -115,8 +129,8 @@ export default function MethodologyFlow() {
 
   return (
     <div
-      className="w-full h-[420px] rounded-xl border border-wiki-border bg-wiki-surface overflow-hidden"
-      aria-label="Methodology relationship diagram showing how BOLT, SURGE, GRID, and FUSE connect to each other"
+      className="w-full h-[620px] rounded-xl border border-wiki-border bg-wiki-surface overflow-hidden"
+      aria-label="Methodology relationship diagram showing how BOLT, SURGE, GRID, and FUSE connect in a vertical flow"
       role="img"
     >
       <ReactFlow
@@ -125,6 +139,7 @@ export default function MethodologyFlow() {
         nodeTypes={nodeTypes}
         onInit={onInit}
         fitView
+        fitViewOptions={{ padding: 0.3 }}
         minZoom={0.5}
         maxZoom={1.5}
         proOptions={{ hideAttribution: true }}

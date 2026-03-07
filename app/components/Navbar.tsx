@@ -43,14 +43,16 @@ export default function Navbar() {
                         <Link href="/wiki" className="hover:-translate-y-[1px] transition-transform">Wiki</Link>
                     </div>
 
-                    <Link
-                        href="#contact"
+                    <a
+                        href="https://booking.akiflow.com/not-really-boring-70ed"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group relative overflow-hidden bg-signal-red text-off-white rounded-full px-6 py-2 text-sm font-heading font-medium transition-transform duration-300 hover:scale-[1.03] outline-none focus-visible:ring-2 focus-visible:ring-signal-red focus-visible:ring-offset-2"
                         style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
                     >
                         <span className="relative z-10">Book a Briefing</span>
                         <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></span>
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Mobile Hamburger */}
@@ -84,13 +86,15 @@ export default function Navbar() {
                     <Link href="/wiki" onClick={() => setMobileMenuOpen(false)}>Wiki</Link>
                 </div>
 
-                <Link
-                    href="#contact"
+                <a
+                    href="https://booking.akiflow.com/not-really-boring-70ed"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setMobileMenuOpen(false)}
                     className="mt-12 bg-signal-red text-off-white rounded-full px-8 py-4 text-lg font-heading font-medium"
                 >
                     Book a Briefing
-                </Link>
+                </a>
             </div>
         </>
     );

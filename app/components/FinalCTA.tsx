@@ -50,21 +50,21 @@ export default function FinalCTA() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full relative z-10">
-                    <Link href="#contact" className="group relative overflow-hidden bg-black text-off-white rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
+                    <a href="https://booking.akiflow.com/not-really-boring-70ed" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden bg-black text-off-white rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
                         <span className="relative z-10 flex items-center gap-3">
                             Schedule Executive Briefing
                             <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                         </span>
                         <span className="absolute inset-0 bg-off-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></span>
-                    </Link>
+                    </a>
 
-                    <button className="group relative overflow-hidden bg-transparent border border-black text-black rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
+                    <Link href="/wiki" className="group relative overflow-hidden bg-transparent border border-black text-black rounded-full px-10 py-5 font-heading font-medium text-lg lg:text-xl transition-transform duration-300 hover:scale-[1.03] outline-none">
                         <span className="relative z-10 flex items-center gap-3">
-                            Download SURGE Framework
+                            Explore the Framework
                             <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                         </span>
                         <span className="absolute inset-0 bg-black/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></span>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
