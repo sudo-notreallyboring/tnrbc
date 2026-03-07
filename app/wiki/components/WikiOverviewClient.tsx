@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, Scale } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import WikiNav from './WikiNav';
@@ -127,6 +127,34 @@ export default function WikiOverviewClient() {
                   </motion.div>
                 ))}
               </div>
+            </motion.section>
+
+            {/* License */}
+            <motion.section
+              id="license"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.25 }}
+              className="mb-16 scroll-mt-24"
+            >
+              <Link
+                href="/wiki/license"
+                className="group flex items-center gap-4 p-5 rounded-xl border border-wiki-border-subtle bg-wiki-surface hover:border-wiki-border-hover hover:bg-wiki-surface-2 transition-all"
+              >
+                <div className="p-2.5 rounded-xl bg-wiki-surface-2 border border-wiki-border">
+                  <Scale size={18} className="text-wiki-text-tertiary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-heading font-bold text-sm text-wiki-text mb-0.5">
+                    Methodology License
+                  </h2>
+                  <p className="text-xs text-wiki-text-tertiary leading-relaxed">
+                    All methodologies are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+                  </p>
+                </div>
+                <ArrowRight size={14} className="text-wiki-text-tertiary group-hover:translate-x-0.5 transition-transform shrink-0" />
+              </Link>
             </motion.section>
 
             {/* CTA */}

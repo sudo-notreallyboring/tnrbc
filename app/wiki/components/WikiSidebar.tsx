@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Zap, Activity, LayoutGrid, Link2, ChevronRight } from 'lucide-react';
+import { BookOpen, Zap, Activity, LayoutGrid, Link2, ChevronRight, Scale } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { philosophyPrinciples } from '../data';
 import { methodSections } from './MethodContent';
@@ -131,6 +131,28 @@ export default function WikiSidebar() {
             </div>
           </div>
         ))}
+
+        {/* Legal section */}
+        <div className="mb-6">
+          <div className="text-[11px] font-heading font-bold uppercase tracking-widest text-wiki-text-tertiary px-3 mb-2">
+            Legal
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <Link
+              href="/wiki/license"
+              className={cn(
+                'group flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-heading transition-all duration-150',
+                pathname === '/wiki/license'
+                  ? 'bg-wiki-surface-2 text-wiki-text'
+                  : 'text-wiki-text-secondary hover:text-wiki-text hover:bg-wiki-surface'
+              )}
+            >
+              <Scale size={14} className="shrink-0 text-wiki-text-tertiary" />
+              <div className="font-medium">License</div>
+              {pathname === '/wiki/license' && <ChevronRight size={12} className="text-wiki-text-tertiary" />}
+            </Link>
+          </div>
+        </div>
 
         {/* Philosophy section — links to overview page */}
         <div className="border-t border-wiki-border pt-6 mt-6">
