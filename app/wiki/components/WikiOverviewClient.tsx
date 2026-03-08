@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
-import { BookOpen, ArrowRight, Scale } from 'lucide-react';
+import { BookOpen, ArrowRight, Scale, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import WikiNav from './WikiNav';
@@ -51,6 +51,27 @@ export default function WikiOverviewClient() {
                 Each method is designed for a specific business context — from rapid operational improvement
                 to enterprise-wide scaling, operating model architecture, and M&A integration.
               </p>
+
+              {/* Full Methodology CTA */}
+              <a
+                href="https://publish.obsidian.md/notreallyboring/NotReallyBoring/Transformation+Methodology/00-Home/Home"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-8 flex items-center gap-4 p-5 rounded-xl border border-signal-red/30 bg-signal-red/[0.06] hover:bg-signal-red/[0.1] hover:border-signal-red/50 transition-all"
+              >
+                <div className="p-2.5 rounded-xl bg-signal-red/10 border border-signal-red/20">
+                  <BookOpen size={20} className="text-signal-red" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="font-heading font-bold text-sm text-wiki-text mb-0.5">
+                    Read the Full Unabridged Methodology
+                  </h2>
+                  <p className="text-xs text-wiki-text-tertiary leading-relaxed">
+                    Deep-dive into the complete transformation methodology — every phase, every tool, every framework.
+                  </p>
+                </div>
+                <ExternalLink size={16} className="text-signal-red/60 group-hover:text-signal-red transition-colors shrink-0" />
+              </a>
             </motion.div>
 
             {/* Methodology System Diagram */}
